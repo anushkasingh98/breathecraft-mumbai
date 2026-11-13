@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BreatheCraft Mumbai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<!-- top-left HUD -->
+<div id="hud" class="panel">
+  <div id="hudPlace">Bandra</div>
+  <div id="hudAqi"><span id="hudAqiNum">--</span> <span id="hudAqiCat"></span></div>
+  <div id="hudSub"></div>
+  <div class="help">WASD / arrows move · Shift sprint · [ ] day · Q / E hour</div>
+</div>
+
+<!-- left: character + mask -->
+<div id="maskPanel" class="panel">
+  <div class="ptitle" id="maskWho">YOU</div>
+  <div class="portraitRow">
+    <canvas id="maskCanvas" width="192" height="216"></canvas>
+    <div class="tankCol">
+      <canvas id="tankCanvas" width="44" height="216"></canvas>
+      <div id="tankPct">--%</div>
+    </div>
+  </div>
+  <div id="maskName"></div>
+  <div id="maskAdvice"></div>
+  <div id="lungLine"></div>
+  <div id="maskScale"></div>
+</div>
+
+<!-- zoom -->
+<div id="zoomCtl" class="panel">
+  <button class="btn" id="zoomIn" title="Zoom in">+</button>
+  <div id="zoomLvl">15</div>
+  <button class="btn" id="zoomOut" title="Zoom out">−</button>
+  <button class="btn" id="pixBtn" title="Pixel size">▦</button>
+</div>
+<div id="attrib">Map tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap contributors</div>
+
+<!-- top-right: factors dropdown -->
+<details id="factors" class="panel">
+  <summary>⚙ AQI FACTORS ▾</summary>
+  <div id="factorList"></div>
+  <label class="festival"><input type="checkbox" id="festival"> Firecrackers / festival night</label>
+  <button id="resetFactors" class="btn">Reset to recorded</button>
+  <div class="note">Sliders start at the real conditions for the chosen date &amp; hour. Move them to see a what-if.</div>
+</details>
+
+<!-- right: time of day -->
+<div id="timeRail" class="panel">
+  <div id="timeIcon">☀️</div>
+  <div id="timeLabel">12:00</div>
+  <div class="railWrap">
+    <div class="ticks"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+    <div id="hour" class="vrail" tabindex="0" role="slider" aria-label="Hour of day" aria-valuemin="0" aria-valuemax="23"><div class="vthumb"></div></div>
+  </div>
+</div>
+
+<!-- bottom: predicted AQI + date timeline -->
+<div id="bottom">
+  <div id="predict" class="panel">
+    <div class="plabel">PREDICTED AQI</div>
+    <div id="predVal">--</div>
+    <div id="predCat"></div>
+    <div id="predDelta"></div>
+  </div>
+  <div id="timeline" class="panel">
+    <div class="tlTop">
+      <button id="play" class="btn">▶ PLAY</button>
+      <div id="dateLabel"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div id="tlWrap">
+      <canvas id="strip"></canvas>
+      <div id="markers"></div>
+      <input type="range" id="day" min="0" step="1">
+    </div>
+    <div id="months"></div>
+  </div>
+</div>
+
+<!-- character select -->
+<div id="select">
+  <h1>BREATHE<span>CRAFT</span></h1>
+  <div class="subtitle">Run through Mumbai and watch the air change · Feb 2025 → today</div>
+  <div id="cards"></div>
+  <button id="startBtn" class="btn big" disabled>PICK A CHARACTER</button>
+  <div class="credit">PM2.5 from 4 OpenAQ stations (Borivali East, Malad West, Shivaji Nagar, Byculla), Open-Meteo weather. Other neighbourhoods are interpolated.</div>
+</div>
+
+<script src="data.js"></script>
+<script src="js/aqi.js"></script>
+<script src="js/map.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
