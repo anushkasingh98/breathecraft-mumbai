@@ -1,5 +1,7 @@
 # BreatheCraft Mumbai
 
+By **Anushka Singh** and **Sandhya Singh**, for the Creative Prize of the *Google Mumbai Data Challenge: Air Quality Mapping & Forecasting*. Two-page brief: `docs/brief.html` (printed to `../BreatheCraft_Mumbai.pdf`).
+
 A Minecraft-style web game for exploring Mumbai's air quality from **1 Feb 2025 to today**. Pick a character, walk around a pixelated map of the real city, and watch the AQI, haze, mask and lung "oxygen tank" change as you scrub through dates and hours or tweak the factors that drive pollution.
 
 ## Running it
@@ -142,3 +144,10 @@ Things to change most often:
 - Only 4 real sensors exist, so everything else on the map is interpolated from them. South Mumbai (Colaba, Fort) effectively reads Byculla.
 - Humidity, traffic and construction are proxies, not measurements.
 - Esri tiles are used under their free, non-commercial terms, with attribution shown on screen.
+
+## What's next
+
+- **Live data:** connect to live AQI feeds so the game shows Mumbai's air right now, not just past readings.
+- **More data sources:** more weather (humidity, wind direction, live forecasts), real traffic and construction data, and more sensor stations.
+- **A real game:** grow the explorer into an interactive game experience with missions and scoring.
+- **Phone version:** the game currently runs on desktop only. Next, optimise it for phones with touch controls and a mobile layout.

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BreatheCraft Mumbai</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --ink: #1b1d24; --muted: #5b6070; --navy: #151a2b; --green: #4caf3a; --line: #e3e6ec; --soft: #f5f7fa; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 12mm 15mm; position: relative; overflow: hidden; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  .pixel { font-family: 'Press Start 2P', monospace; }
+
+  header.hero { background: var(--navy); color: #fff; margin: -12mm -15mm 5mm; padding: 9mm 15mm 7mm; }
+  .chip { display: inline-block; font-size: 8pt; font-weight: 600; letter-spacing: .02em; background: rgba(255,255,255,.12); padding: 3px 9px; border-radius: 99px; margin-bottom: 4mm; }
+  h1 { font-family: 'Press Start 2P', monospace; font-size: 22pt; margin: 0 0 3mm; line-height: 1.15; }
+  h1 span { color: #7ed957; }
+  .tag { font-size: 13pt; color: #d6dbe6; margin: 0; }
+  .by { font-size: 9pt; color: #9aa3b8; margin-top: 3mm; }
+
+  h2 { font-family: 'Press Start 2P', monospace; font-size: 10pt; margin: 5mm 0 2.5mm; color: var(--navy); }
+  h2::before { content: '■ '; color: var(--green); }
+  p { margin: 0 0 2.5mm; }
+  .lead { font-size: 11pt; line-height: 1.45; }
+  .lead b { color: #2e7d32; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  figure { margin: 0; }
+  figure img { width: 100%; display: block; border-radius: 3px; border: 1px solid var(--line); }
+  figcaption { font-size: 8.5pt; color: var(--muted); margin-top: 1.5mm; line-height: 1.35; }
+  figcaption b { color: var(--ink); }
+
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 5mm; }
+  .step { display: flex; gap: 3mm; }
+  .num { flex: none; width: 8mm; height: 8mm; background: var(--green); color: #fff; font-family: 'Press Start 2P', monospace; font-size: 9pt; display: grid; place-items: center; border-radius: 2px; }
+  .step b { display: block; margin-bottom: .5mm; }
+  .step div { font-size: 9.5pt; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  td, th { padding: 1.2mm 2.5mm; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { font-size: 8.5pt; color: var(--muted); font-weight: 600; }
+  .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+
+  .cols { display: grid; grid-template-columns: 1.1fr .9fr; gap: 7mm; }
+  ul { margin: 0; padding-left: 4.5mm; }
+  li { margin-bottom: 1.6mm; }
+  .box { background: var(--soft); border-left: 3px solid var(--green); padding: 3mm 4mm; border-radius: 2px; font-size: 9.5pt; }
+  .box p:last-child { margin: 0; }
+  .next { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+  .next div { background: var(--soft); border-top: 3px solid var(--green); padding: 2.5mm 3mm; font-size: 9pt; line-height: 1.35; border-radius: 2px; }
+  .next b { display: block; margin-bottom: 1mm; font-size: 9.5pt; }
+  .moments li b { color: var(--navy); }
+  footer { position: absolute; left: 15mm; right: 15mm; bottom: 9mm; font-size: 8pt; color: var(--muted); display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 2.5mm; }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page">
+  <header class="hero">
+    <div class="chip">Creative Prize · Google Mumbai Data Challenge: Air Quality Mapping &amp; Forecasting</div>
+    <h1>BREATHE<span>CRAFT</span><br>MUMBAI</h1>
+    <p class="tag">A Minecraft-style walk through Mumbai's air, Feb 2025 → today</p>
+    <div class="by">by Anushka Singh &amp; Sandhya Singh</div>
+  </header>
+
+  <p class="lead">An AQI of 304 is just a number. BreatheCraft turns it into something you can <b>see and feel</b>. You walk your character through the real streets of Mumbai, and as the air gets worse the sky hazes over, your character puts on a mask, and an oxygen tank drains.</p>
+
+  <h2>Same street, two days</h2>
+  <div class="pair">
+    <figure>
+      <img src="img/monsoon.jpg" alt="Bandra on a monsoon afternoon, AQI 20">
+      <figcaption><b>15 Jul 2025, 1 pm · Bandra · AQI 20 (Good).</b> No mask, oxygen tank 96%, like smoking 0.5 cigarettes a day.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/diwali.jpg" alt="Bandra on Diwali night, AQI 304">
+      <figcaption><b>8 Nov 2026, Diwali, 9 pm · Bandra · AQI 304 (Very Poor).</b> Gas mask, tank 39%, about 6 cigarettes a day, brown smog over the map.</figcaption>
+    </figure>
+  </div>
+
+  <h2>How you play</h2>
+  <div class="steps">
+    <div class="step"><span class="num">1</span><div><b>Pick a character</b>Sandhya (runner), Anushka (girl), Himank (boy) or Dheeraj (commuter). Kids and runners are more sensitive, so their masks come on 50 AQI points earlier.</div></div>
+    <div class="step"><span class="num">2</span><div><b>Walk real Mumbai</b>Move with WASD over a pixelated city map. Zoom from street level to the whole city. 18 signposts show each area's AQI.</div></div>
+    <div class="step"><span class="num">3</span><div><b>Travel in time</b>Drag the date timeline (coloured by daily AQI) and the time-of-day rail, or press Play for a day-by-day time-lapse.</div></div>
+    <div class="step"><span class="num">4</span><div><b>Ask “what if?”</b>Move sliders for temperature, rain, wind, humidity, traffic, construction and firecrackers to see the Predicted AQI change.</div></div>
+  </div>
+
+  <h2>What the AQI does to you</h2>
+  <table>
+    <tr><th>AQI*</th><th>Category</th><th>Your character wears</th><th>Advice shown</th></tr>
+    <tr><td>0–100</td><td><span class="sw" style="background:#00b050"></span>Good / Satisfactory</td><td>No mask</td><td>Enjoy the outdoors</td></tr>
+    <tr><td>101–200</td><td><span class="sw" style="background:#f4d600"></span>Moderate</td><td>Cloth / surgical mask</td><td>Cut down long outdoor exertion</td></tr>
+    <tr><td>201–300</td><td><span class="sw" style="background:#ff9900"></span>Poor</td><td>N95 respirator</td><td>Wear an N95, avoid outdoor exercise</td></tr>
+    <tr><td>301+</td><td><span class="sw" style="background:#ff2a2a"></span>Very Poor / Severe</td><td>Gas mask</td><td>Stay indoors, run a purifier</td></tr>
+  </table>
+  <p style="font-size:8.5pt;color:var(--muted);margin-top:2mm">*For Dheeraj. For Sandhya, Anushka and Himank, each step comes 50 points earlier. The oxygen tank shows how much clean air is left for the lungs, and the cigarette line uses the rule of thumb that 22 µg/m³ of PM2.5 for a day ≈ 1 cigarette.</p>
+
+  <footer><span>BreatheCraft Mumbai · Anushka Singh &amp; Sandhya Singh · Creative Prize submission</span><span>1 / 2</span></footer>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page">
+  <div class="pair" style="width:80%;margin:0 auto">
+    <figure>
+      <img src="img/select.jpg" alt="Character select screen">
+      <figcaption><b>Character select.</b> Each card previews all four masks for that character.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/city.jpg" alt="Zoomed-out city view with AQI signposts">
+      <figcaption><b>Zoomed out.</b> The AQI signposts show how air differs across neighbourhoods at the same hour.</figcaption>
+    </figure>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2>Built on the challenge data</h2>
+      <ul>
+        <li><b>Hourly PM2.5</b> from the challenge's 4 OpenAQ stations: Borivali East, Malad West, Shivaji Nagar and Byculla (Feb 2025 – Nov 2026).</li>
+        <li>Converted to <b>India's CPCB AQI</b> using the PM2.5 scale and colours.</li>
+        <li>The AQI anywhere on the map is a <b>distance-weighted blend</b> of the 4 stations.</li>
+        <li><b>Weather</b> (temperature, rain, wind) from Open-Meteo sets each hour's starting conditions.</li>
+        <li>Hours with no reading are filled with typical values for that month and hour, and labelled <b>“estimated”</b> in the game.</li>
+      </ul>
+
+      <h2>The “what if” model</h2>
+      <div class="box">
+        <p>The <b>firecracker effect is learned from the data</b>: on Diwali nights, PM2.5 runs about <b>1.6× higher</b> (fitted on 13,153 station-hours).</p>
+        <p>Rain and wind clean the air, while traffic, construction and cool, humid air make it worse. These strengths are set by hand to sensible values, because in the raw data they get mixed up with the seasons.</p>
+        <p>With the sliders untouched, Predicted AQI equals the recorded value. It is a scenario tool, not a forecast.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>Moments to try</h2>
+      <ul class="moments">
+        <li><b>Diwali nights</b> (20 Oct 2025, 8 Nov 2026): the AQI jumps into Very Poor and Severe, and the masks go on.</li>
+        <li><b>Monsoon</b> (Jun–Sep): the cleanest stretch of the year, with no masks.</li>
+        <li><b>Winter</b> (Nov–Jan): the most Moderate days. Try turning rain up on one.</li>
+        <li><b>Your neighbourhood</b>: zoom in and walk home.</li>
+      </ul>
+
+      <h2>Try it</h2>
+      <ul>
+        <li>Open <b>game/index.html</b> in a desktop browser. There's nothing to install. It needs internet for the map.</li>
+        <li>Plain HTML + JavaScript, and the map is a real street map drawn pixelated.</li>
+        <li>Demo link: <b>index.html?char=1&amp;day=645&amp;hour=21</b> opens Diwali night as Anushka.</li>
+      </ul>
+
+      <h2>Limits</h2>
+      <p style="font-size:9.5pt">There are only 4 real sensors, so the rest of the city is interpolated. Humidity, traffic and construction are stand-ins, not measurements.</p>
+    </div>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="next">
+    <div><b>📡 Live data</b>Connect to live AQI feeds so the game shows the air in Mumbai right now, not just past readings.</div>
+    <div><b>🌦 More data sources</b>Add more weather (humidity, wind direction, live forecasts) and real traffic, construction and sensor data from more stations.</div>
+    <div><b>🎮 A real game</b>Turn the explorer into an interactive game experience, with missions and a score for the air you breathe.</div>
+    <div><b>📱 Phone version</b>The game currently runs on desktop only. Next step: optimise it for phones with touch controls and a mobile layout.</div>
+  </div>
+
+  <footer><span>Map tiles © Esri, HERE, Garmin, © OpenStreetMap contributors · Weather: Open-Meteo · PM2.5: OpenAQ</span><span>2 / 2</span></footer>
+</section>
+
+</body>
+</html>
