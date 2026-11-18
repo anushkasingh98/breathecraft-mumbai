@@ -45,6 +45,18 @@ for (const r of parseCSV(fs.readFileSync(path.join(ROOT, 'Data/Train.csv'), 'utf
   sum[s][i] += pm; cnt[s][i]++;
 }
 
+// ---- LGBM forecast for hours after Train.csv ends (ID = MUM_<location>_<YYYYMMDD>T<HH00>_IST, hour-ending)
+const FORECAST = 'Submissions/lgbm_blend0.5_rmse_nocap.csv';
+const fc = stations.map(() => new Map());
+for (const r of parseCSV(fs.readFileSync(path.join(ROOT, FORECAST), 'utf8'))) {
+  const [, loc, ts] = r.ID.split('_');
+  const s = sIndex[loc], v = parseFloat(r.Target);
+  if (s === undefined || !(v >= 0)) continue;
+  let d = dayIdx(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`), h = +ts.slice(9, 11) - 1;
+  if (h < 0) { h = 23; d -= 1; }
+  fc[s].set(d * 24 + h, v);
+}
+
 const monthOf = i => new Date(START + Math.floor(i / 24) * 864e5).getUTCMonth();
 const median = a => { if (!a.length) return NaN; a.sort((x, y) => x - y); return a[a.length >> 1]; };
 
@@ -57,10 +69,14 @@ const outStations = stations.map((s, k) => {
   }
   const clim = {};
   for (const key in buckets) clim[key] = median(buckets[key]);
+  let lastObs = -1;
+  for (let i = 0; i < NH; i++) if (cnt[k][i]) lastObs = i;
+  // imputed: 0 = measured, 1 = climatology gap fill, 2 = LGBM forecast
   let imputed = '';
   for (let i = 0; i < NH; i++) {
-    if (Number.isNaN(pm[i])) { pm[i] = clim[monthOf(i) * 24 + (i % 24)] ?? 40; imputed += '1'; }
-    else imputed += '0';
+    if (!Number.isNaN(pm[i])) imputed += '0';
+    else if (i > lastObs && fc[k].has(i)) { pm[i] = fc[k].get(i); imputed += '2'; }
+    else { pm[i] = clim[monthOf(i) * 24 + (i % 24)] ?? 40; imputed += '1'; }
   }
   return {
     name: s.station_name.replace(', Mumbai', '').replace(/ - (IITM|BMC)/, ''),
@@ -125,4 +141,4 @@ console.log('model', model);
 
 const out = { start: '2025-02-01', days: NDAYS, stations: outStations, weather: wx, model };
 fs.writeFileSync(path.join(__dirname, '../data.js'), 'window.AQI_DATA = ' + JSON.stringify(out) + ';\n');
-console.log('days', NDAYS, 'stations', outStations.map(s => s.name + ' imputed ' + [...s.imputed].filter(c => c === '1').length));
+console.log('days', NDAYS, 'stations', outStations.map(s => s.name + ' imputed ' + [...s.imputed].filter(c => c === '1').length + ' forecast ' + [...s.imputed].filter(c => c === '2').length));

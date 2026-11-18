@@ -41,6 +41,7 @@ function stationAQI(s, i) {
   return v;
 }
 const isImputed = (s, i) => D.stations[s].imputed[i] === '1';
+const isForecast = (s, i) => D.stations[s].imputed[i] === '2';
 
 const DIWALI_DAYS = ['2025-10-19', '2025-10-20', '2025-10-21', '2026-11-07', '2026-11-08', '2026-11-09']
   .map(s => Math.round((Date.parse(s) - START_MS) / 864e5));

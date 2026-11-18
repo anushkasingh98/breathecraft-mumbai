@@ -76,7 +76,8 @@ Processing:
 
 - **Timestamps:** the station files mark the *end* of each hour, so the bake script shifts every reading back one hour.
 - **Bad readings:** glitch rows (`flag_high_1000` or > 1,000 µg/m³) are dropped.
-- **Gap filling:** gaps are filled with the station's median for that month and hour. This covers 1–18 Feb 2025 (before the data starts) and everything after the last training row, 10 Nov 2026. These hours are flagged as estimated in the UI.
+- **Forecast:** hours after each station's last training row (10 Nov 2026) use the LGBM predictions in `../Submissions/lgbm_blend0.5_rmse_nocap.csv`, which run to 20 Nov 2026. These hours are flagged as "LGBM forecast" in the UI.
+- **Gap filling:** other gaps are filled with the station's median for that month and hour. This covers 1–18 Feb 2025 (before the data starts), gaps inside the training data, and any hour after the forecast ends. These hours are flagged as estimated in the UI.
 - **AQI:** India's CPCB PM2.5 sub-index, applied to a 50/50 blend of the hourly value and its trailing 24-hour mean. CPCB officially uses 24-hour means; the blend keeps some hour-to-hour variation for the time slider.
 - **Map points:** the AQI anywhere on the map, including the 14 non-sensor neighbourhoods, is an inverse-distance-weighted average of the 4 stations.
 

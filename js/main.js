@@ -316,7 +316,7 @@ function updateUI() {
   $('hudAqiNum').textContent = 'AQI ' + aqi;
   $('hudAqiCat').textContent = cat.name;
   $('hudAqiCat').style.background = cat.color;
-  $('hudSub').textContent = `Recorded here: ${Math.round(S.rec)} · PM2.5-based · nearest sensor ${near.name}${isImputed(near.station, i) ? ' (gap, estimated)' : ''}`;
+  $('hudSub').textContent = `Recorded here: ${Math.round(S.rec)} · PM2.5-based · nearest sensor ${near.name}${isImputed(near.station, i) ? ' (gap, estimated)' : isForecast(near.station, i) ? ' (LGBM forecast)' : ''}`;
 
   const d = aqi - Math.round(S.rec);
   $('predVal').textContent = aqi;
